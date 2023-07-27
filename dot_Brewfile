@@ -29,6 +29,7 @@ brew "openjdk"
 brew "gh" # github cli
 brew "fastlane"
 brew "chezmoi"
+brew "dashlane/tap/dashlane-cli"
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
