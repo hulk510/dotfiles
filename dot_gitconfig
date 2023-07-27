@@ -1,0 +1,25 @@
+[user]
+	email = dorian.51069@gmail.com
+	name = hulk510
+[core]
+	editor = vi
+	excludesfile = ~/.gitignore
+[pull]
+	rebase = false
+	ff = only
+# これでpathに対して違うuserにできる
+#[includeIf "gitdir:~/Projects/enterprise/"]
+#  path = ~/.gitconfig_enterprise
+# goのフォルダもprivateに設定しておく
+#[includeIf "gitdir:~/go/src/github.com/goto-eat-haruka/"]
+#  path = ~/.gitconfig_enterprise
+[merge]
+	ff = false
+[rebase]
+	autosquash = true
+[init]
+	defaultBranch = main
+# fetch時にpruneする
+# これで、削除されたリモートブランチがローカルに残らなくなる
+[fetch]
+  prune = true

@@ -1,0 +1,7 @@
+# 会社用のgitconfig
+# enterprise
+[user]
+	name = harukas
+	email = goto-eat@robes.co.jp
+[pager]
+	branch = false

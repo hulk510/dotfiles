@@ -1,0 +1,134 @@
+set termguicolors
+
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
+  "Add Plugin
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('Shougo/deoplete.nvim')
+  "Directry Tree
+  call dein#add('scrooloose/nerdtree')
+  "Themes
+  call dein#add( 'jacoborus/tender.vim')
+  call dein#add( 'itchyny/lightline.vim')
+  "Plugin for display git branch
+  call dein#add('itchyny/vim-gitbranch')
+
+  call dein#add('ConradIrwin/vim-bracketed-paste')
+
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+
+  call dein#end()
+  call dein#save_state()
+endif
+
+filetype plugin indent on
+syntax enable
+
+" 挿入モードでバックスペースで削除できるようにする
+set backspace=indent,eol,start
+
+" 全角文字専用の設定
+set ambiwidth=double
+" setting
+"文字コードをUFT-8に設定
+set fenc=utf-8
+" バックアップファイルを作らない
+set nobackup
+" スワップファイルを作らない
+set noswapfile
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
+" バッファが編集中でもその他のファイルを開けるように
+set hidden
+" 入力中のコマンドをステータスに表示する
+set showcmd
+
+"insertモードを表示しない
+set noshowmode
+" 見た目系
+" 行番号を表示
+set number
+" 現在の行を強調表示
+set cursorline
+" 行末の1文字先までカーソルを移動できるように
+set virtualedit=onemore
+" インデントはスマートインデント
+set smartindent
+set autoindent    " 改行時に前の行のインデントを継続する
+" ビープ音を可視化
+set visualbell
+" 括弧入k力時の対応する括弧を表示
+set showmatch
+" ステータスラインを常に表示
+set laststatus=2
+
+" コマンドラインの補完
+set wildmode=list:longest
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+" シンタックスハイライトの有効化
+syntax enable
+
+
+" Tab系
+" 不可視文字を可視化(タブが「▸-」と表示される)
+set list listchars=tab:\▸\-
+" Tab文字を半角スペースにする
+set expandtab
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+set tabstop=2
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
+
+" 検索系
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+" 検索語をハイライト表示
+set hlsearch
+nnoremap <ESC><ESC> :nohlsearch<CR>
+" ESC to jj
+inoremap <silent> jj <ESC>
+
+" NERDTree の設定 -------------------------------------------------------------
+" ディレクトリ表示の設定
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable  = '→'
+let g:NERDTreeDirArrowCollapsible = '↓'
+" ctrl-n で NERDTree を起動
+nnoremap <silent> <C-n> :NERDTreeToggle<CR>
+
+
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Theme
+syntax enable
+colorscheme tender
+let g:lightline = {
+      \ 'colorscheme': 'tender',
+      \ 'active': {
+      \  'left' : [ [ 'mode', 'paste' ],
+      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'gitbranch#name'
+      \ },
+      \ }

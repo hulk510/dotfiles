@@ -1,0 +1,61 @@
+# brew bundle cleanup // アンインストールとか勝手にやってくれる
+# brew bundle // インストール
+
+cask_args appdir: "/Applications"
+
+# brew tap は指定したGitHubリポジトリをHomebrewに登録する仕組みらしい
+tap "heroku/brew"
+# tap "homebrew/bundle"
+tap "homebrew/cask"
+# tap "homebrew/cask-versions"
+# tap "homebrew/core"
+tap "homebrew/cask-fonts"
+
+brew "go"
+brew "swift-format"
+brew "awscli"
+brew "anyenv"
+brew "git"
+brew "heroku"
+brew "heroku/brew/heroku-node"
+brew "jq"
+brew "mas" # ターミナルからApp Storeのアプリをインストールできるようにするやつ
+brew "tree"
+brew "watch"
+brew "wget"
+brew "fzf"
+brew "tmux"
+brew "openjdk"
+brew "gh" # github cli
+brew "fastlane"
+brew "chezmoi"
+
+## caskを使うとMacのGUIアプリをインストールできる
+# いるものいらないもの自分で考えて適当に
+cask "appcleaner"
+cask "docker"
+cask "notion"
+cask "ticktick"
+cask "rectangle"
+cask "the-unarchiver"
+cask "visual-studio-code"
+cask "dropbox"
+cask "discord"
+cask "vivaldi"
+cask "google-chrome"
+cask "tableplus"
+cask "ogdesign-eagle"
+cask "fork"
+# cask "virtualbox" // m1, m2だと動かないintel系のみらしい。別途インストールしないとかも。
+cask "postman"
+cask "unity-hub"
+cask "zoom"
+cask "kindle"
+cask "wireshark"
+cask "spotify"
+cask "fl-studio"
+cask "font-Hack-nerd-font" # font ~ nerd-fontで検索するといろんなフォントがあるはず
+cask "copilot-for-xcode"
+cask "ticktick"
+# 基本的にcaskでインストールできるならcaskでいいかなって思う
+mas "LINE", id: 539883307

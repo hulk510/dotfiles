@@ -1,0 +1,160 @@
+alias yarn='corepack yarn'
+alias yarnpkg='corepack yarnpkg'
+alias pnpm='corepack pnpm'
+alias pnpx='corepack pnpx'
+# alias npm='corepack npm'
+# alias npx='corepack npx'
+
+# 新しくコマンドをインストールしたときに自動的に認識させる
+zstyle ":completion:*:commands" rehash 1
+
+# 補完
+autoload -U compinit
+compinit
+
+# 色を使用
+autoload -Uz colors
+colors
+
+# まずこれでzplugのインストールして
+# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+source ~/.zplug/init.zsh
+
+###### Zplug settings start ###############
+# 書き方
+# 「ユーザ名/リポジトリ名」で記述し、ダブルクォートで見やすく括る（括らなくてもいい）
+
+# 間違えたコマンドは赤色に、正しいコマンドは緑にハイライト
+zplug "zsh-users/zsh-syntax-highlighting"
+
+# historyサーチをやりやすくする。使ってるか分からん。
+zplug "zsh-users/zsh-history-substring-search"
+
+# tabで補完できる
+zplug "zsh-users/zsh-completions"
+
+# コマンド途中にサジェストを出す。
+zplug "zsh-users/zsh-autosuggestions"
+
+# zsh が非同期になる
+zplug "mafredri/zsh-async", from:github
+# theme
+zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
+zstyle :prompt:pure:path color blue
+
+# Can manage a plugin as a command
+# And accept glob patterns (e.g., brace, wildcard, ...)
+zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
+
+# 一生際インストールされるので一旦コメントアウト
+# # パイプで依存関係を表現できる
+# # 依存関係はパイプの流れのまま
+# # この例では emoji-cli は jq に依存する
+# # ちなみにこのプラグインは絵文字をcliで使えるようにする奴。特に使ってない。
+# zplug "stedolan/jq", \
+#     from:gh-r, \
+#     as:command, \
+#     rename-to:jq
+# zplug "b4b4r07/emoji-cli", \
+#     on:"stedolan/jq"
+
+# check コマンドで未インストール項目があるかどうか verbose にチェックし
+# false のとき（つまり未インストール項目がある）y/N プロンプトで
+# インストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# プラグインを読み込み、コマンドにパスを通すverboseつけると毎回load ~ って出てくるから消す
+# zplug load --verbose
+zplug load
+###### Zplug settings end ###############
+# fuzzy finder
+# 色々できるみたい
+# https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
+# brewで入れるか、gitで入れれる
+# これは多分そのfzfを読み込むコードかな？
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# aws入れてないから消す
+# source /usr/local/bin/aws_zsh_completer.sh
+
+#anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init - zsh)"
+
+# anyenvで入れたnodenvがnpmとかでglobal installした奴がpath通ってないみたいなので追加
+# export PATH="$HOME/.anyenv/envs/nodenv/versions/*/bin:$PATH"
+
+#
+# zshの細かい設定系start
+#
+
+# Ctrl+sのロック, Ctrl+qのロック解除を無効にする
+setopt no_flow_control
+
+# 他のターミナルとヒストリーを共有
+setopt share_history
+
+# cdコマンドを省略して、ディレクトリ名のみの入力で移動
+setopt auto_cd
+
+# 自動でpushdを実行
+# pushdはディレクトリを記憶してくれるやつ
+# これオンにしといてcdrで移動できるようにしておけばディレクトリ移動が楽になる
+setopt auto_pushd
+
+# pushdから重複を削除
+setopt pushd_ignore_dups
+
+# cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
+# cdr タブでリストを表示
+autoload -Uz add-zsh-hook
+autoload -Uz chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# ヒストリーに重複を表示しない
+setopt histignorealldups
+
+# ヒストリーの保存量設定
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
+bindkey '^r' history-incremental-pattern-search-backward
+bindkey '^s' history-incremental-pattern-search-forward
+
+#
+# end
+#
+
+# forkアプリの起動
+# alias fork='/mnt/c/Windows/System32/cmd.exe /c "%USERPROFILE%\\AppData\Local\Fork\Fork.exe "$(wslpath -w -a .)'
+
+# goのpath通す
+export PATH=$PATH:/usr/local/go/bin
+
+# https://zenn.dev/kaityo256/articles/open_command_on_wsl
+function open() {
+    if [ $# != 1 ]; then
+        explorer.exe .
+    else
+        if [ -e $1 ]; then
+            cmd.exe /c start $(wslpath -w $1) 2> /dev/null
+        else
+            echo "open: $1 : No such file or directory"
+        fi
+    fi
+}
+
+# pnpm
+export PNPM_HOME="/Users/gotoharuka/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
