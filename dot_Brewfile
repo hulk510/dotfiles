@@ -10,6 +10,7 @@ tap "homebrew/cask"
 # tap "homebrew/cask-versions"
 # tap "homebrew/core"
 tap "homebrew/cask-fonts"
+tap "dashlane/tap"
 
 brew "go"
 brew "swift-format"
@@ -29,7 +30,7 @@ brew "openjdk"
 brew "gh" # github cli
 brew "fastlane"
 brew "chezmoi"
-brew "dashlane/tap/dashlane-cli"
+brew "dashlane-cli"
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に

@@ -1,4 +1,3 @@
-
 git_protocol: ssh
 # What editor gh should run when creating issues, pull requests, etc. If blank, will refer to environment.
 editor: vim
@@ -7,5 +6,5 @@ prompt: enabled
 # A pager program to send command output to, e.g. "less". Set the value to "cat" to disable the pager.
 pager: less
 aliases:
-    personal: '!cp ~/.config/gh/hosts.yml.personal ~/.config/gh/hosts.yml && gh auth status'
-    work: '!cp ~/.config/gh/hosts.yml.work ~/.config/gh/hosts.yml && gh auth status'
+    personal: "!cp ~/.config/gh/hosts.yml.personal ~/.config/gh/hosts.yml && gh auth status"
+    work: "!cp ~/.config/gh/hosts.yml.work ~/.config/gh/hosts.yml && gh auth status"
