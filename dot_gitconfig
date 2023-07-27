@@ -11,7 +11,7 @@
 #[includeIf "gitdir:~/Projects/enterprise/"]
 #  path = ~/.gitconfig_enterprise
 # goのフォルダもprivateに設定しておく
-#[includeIf "gitdir:~/go/src/github.com/goto-eat-haruka/"]
+#[includeIf "gitdir:~/go/src/github.com/user-name"]
 #  path = ~/.gitconfig_enterprise
 [merge]
 	ff = false
