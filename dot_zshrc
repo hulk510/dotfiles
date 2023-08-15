@@ -5,6 +5,8 @@ alias pnpx='corepack pnpx'
 # alias npm='corepack npm'
 # alias npx='corepack npx'
 
+export PATH="/Users/gotoharuka/.deno/bin:$PATH"
+
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
 
