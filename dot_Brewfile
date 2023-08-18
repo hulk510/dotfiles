@@ -35,6 +35,7 @@ brew "minio/stable/mc"
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
+cask "slack"
 cask "appcleaner"
 cask "docker"
 cask "notion"
