@@ -32,6 +32,7 @@ brew "fastlane"
 brew "chezmoi"
 brew "dashlane-cli"
 brew "minio/stable/mc"
+brew "corepack"
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
