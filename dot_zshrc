@@ -6,6 +6,7 @@ alias pnpx='corepack pnpx'
 # alias npx='corepack npx'
 
 export PATH="/Users/gotoharuka/.deno/bin:$PATH"
+export PATH="`python3 -m site --user-base`/bin:$PATH"
 
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
