@@ -3,7 +3,6 @@
 	name = hulk510
 [core]
 	editor = vi
-	excludesfile = ~/.gitignore
 [pull]
 	rebase = false
 	ff = only
