@@ -85,13 +85,6 @@ zplug load
 # aws入れてないから消す
 # source /usr/local/bin/aws_zsh_completer.sh
 
-#anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init - zsh)"
-
-# anyenvで入れたnodenvがnpmとかでglobal installした奴がpath通ってないみたいなので追加
-# export PATH="$HOME/.anyenv/envs/nodenv/versions/*/bin:$PATH"
-
 #
 # zshの細かい設定系start
 #
