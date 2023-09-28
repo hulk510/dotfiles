@@ -1,3 +1,3 @@
 github.com:
-    oauth_token: {{ (dashlanePassword "github-dashlane-password").password }}
+    oauth_token: {{ (index (dashlanePassword "github-dashlane-password") 0).password }}
     git_protocol: ssh
