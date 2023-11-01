@@ -1,3 +1,4 @@
+{{ $password := (dashlanePassword "github-dashlane-password") }}
 github.com:
-    oauth_token: {{ (index (dashlanePassword "github-dashlane-password") 0).password }}
+    oauth_token: {{ if $password }}{{ (index $password 0).password }}{{ else }}DEFAULT_OR_EMPTY_VALUE{{ end }}
     git_protocol: ssh
