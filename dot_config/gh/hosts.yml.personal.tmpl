@@ -1,4 +1,10 @@
-{{ $password := (dashlanePassword "github-dashlane-password") }}
 github.com:
-    oauth_token: {{ if $password }}{{ (index $password 0).password }}{{ else }}DEFAULT_OR_EMPTY_VALUE{{ end }}
+    {{ if eq (getenv "INITIAL_SETUP") "true" }}
+    # 初期セットアップ時にはDEFAULT_TOKENを使用
+    oauth_token: ""
+    {{ else }}
+    # 通常のセットアップ
+    oauth_token: {{ (index (dashlanePassword "github-dashlane-password") 0).password }}
+    {{ end }}
+    git_protocol: ssh
     git_protocol: ssh
