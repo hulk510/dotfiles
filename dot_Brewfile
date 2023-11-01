@@ -63,5 +63,7 @@ cask "fl-studio"
 cask "font-Hack-nerd-font" # font ~ nerd-fontで検索するといろんなフォントがあるはず
 cask "copilot-for-xcode"
 cask "ticktick"
+cask "wezterm"
+
 # 基本的にcaskでインストールできるならcaskでいいかなって思う
 mas "LINE", id: 539883307

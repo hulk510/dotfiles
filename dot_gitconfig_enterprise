@@ -1,7 +1,0 @@
-# 会社用のgitconfig
-# enterprise
-[user]
-	name = haruka
-	email = ""
-[pager]
-	branch = false
