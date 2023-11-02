@@ -11,6 +11,7 @@ tap "homebrew/cask"
 # tap "homebrew/core"
 tap "homebrew/cask-fonts"
 tap "dashlane/tap"
+tap "homebrew/cask-fonts"
 
 brew "go"
 brew "swift-format"
@@ -64,6 +65,7 @@ cask "font-Hack-nerd-font" # font ~ nerd-fontで検索するといろんなフ�
 cask "copilot-for-xcode"
 cask "ticktick"
 cask "wezterm"
+cask "font-fira-code"
 
 # 基本的にcaskでインストールできるならcaskでいいかなって思う
 mas "LINE", id: 539883307
