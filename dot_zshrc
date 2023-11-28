@@ -139,3 +139,10 @@ esac
 
 # config asdf
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+# bun completions
+[ -s "/Users/gotoharuka/.bun/_bun" ] && source "/Users/gotoharuka/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
