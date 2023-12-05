@@ -1,6 +1,9 @@
 [user]
 	email = dorian.51069@gmail.com
 	name = hulk510
+	signingkey = 0310E7FE5125EE45
+[commit]
+	gpgsign = true
 [core]
 	editor = vi
 [pull]

@@ -1,6 +1,8 @@
 # brew bundle cleanup // アンインストールとか勝手にやってくれる
 # brew bundle // インストール
 
+# TODO: linuxbrewでも使うからmacとlinuxで分けるか.tmplファイルにする
+
 cask_args appdir: "/Applications"
 
 # brew tap は指定したGitHubリポジトリをHomebrewに登録する仕組みらしい
@@ -34,6 +36,8 @@ brew "chezmoi"
 brew "minio/stable/mc"
 brew "helm"
 brew "neovim"
+brew "gpg"
+brew "pinentry-mac" # for mac gpg pineentryなのでmacの時のみインストールするようにする
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
