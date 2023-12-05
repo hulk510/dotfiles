@@ -1,6 +1,8 @@
 [user]
 	email = dorian.51069@gmail.com
 	name = hulk510
+	# `gpg --list-secret-keys --keyid-format=long`
+	# TODO: 環境ごとに違うと思うので出し分けたい。とりあえずmacの時のみ
 	signingkey = 0310E7FE5125EE45
 [commit]
 	gpgsign = true
