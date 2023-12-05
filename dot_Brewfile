@@ -65,6 +65,7 @@ cask "copilot-for-xcode"
 cask "ticktick"
 cask "wezterm"
 cask "font-fira-code"
+cask "blender"
 
 # 基本的にcaskでインストールできるならcaskでいいかなって思う
 mas "LINE", id: 539883307
