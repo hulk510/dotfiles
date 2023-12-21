@@ -38,6 +38,8 @@ brew "helm"
 brew "neovim"
 brew "gpg"
 brew "pinentry-mac" # for mac gpg pineentryなのでmacの時のみインストールするようにする
+brew "rust"
+brew "rustfmt"
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
