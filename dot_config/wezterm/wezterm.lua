@@ -12,7 +12,7 @@ end
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font 'Fira Code'
-config.font_size = 14.0
+config.font_size = 16.0
 
 -- For example, changing the color scheme:
 config.color_scheme = 'tokyonight'
