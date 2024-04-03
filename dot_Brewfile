@@ -40,6 +40,7 @@ brew "gpg"
 brew "pinentry-mac" # for mac gpg pineentryなのでmacの時のみインストールするようにする
 brew "rust"
 brew "rustfmt"
+brew "ripgrep" # grepするツールかな？Telescopeのlive_grepで使用するため入れている
 
 ## caskを使うとMacのGUIアプリをインストールできる
 # いるものいらないもの自分で考えて適当に
