@@ -2,7 +2,8 @@
 vim.opt.number = true
 
 -- leader key
-vim.g.mapleader = '<Space>'
+-- Spaceキーをリーダーキーにする（デフォルトはバックスラッシュ）
+vim.g.mapleader = ' '
 
 -- 動かない
 vim.opt.helplang = 'ja'
