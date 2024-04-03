@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function()
-  require("toggleterm").setup{
+  require("toggleterm").setup {
     direction = 'float'
   }
 end
