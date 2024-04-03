@@ -28,3 +28,7 @@ vim.opt.listchars = { tab = '▸\\-', trail = '·', extends = '>', precedes = '<
 
 -- マウスのコピー等をどのモードでも動かせるように
 vim.opt.mouse = 'a'
+
+-- clipboardにコピペできるようにする
+vim.opt.clipboard:append("unnamedplus")
+
