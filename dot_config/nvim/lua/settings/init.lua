@@ -32,3 +32,7 @@ vim.opt.mouse = 'a'
 -- clipboardにコピペできるようにする
 vim.opt.clipboard:append("unnamedplus")
 
+vim.opt.relativenumber = true
+vim.opt.signcolumn = 'yes' 
+vim.opt.cursorline = true
+
