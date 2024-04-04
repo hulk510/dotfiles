@@ -43,43 +43,20 @@ zplug "mafredri/zsh-async", from:github
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zstyle :prompt:pure:path color blue
 
-# Can manage a plugin as a command
-# And accept glob patterns (e.g., brace, wildcard, ...)
-zplug "Jxck/dotfiles", as:command, use:"bin/{histuniq,color}"
-
-# 一生際インストールされるので一旦コメントアウト
-# # パイプで依存関係を表現できる
-# # 依存関係はパイプの流れのまま
-# # この例では emoji-cli は jq に依存する
-# # ちなみにこのプラグインは絵文字をcliで使えるようにする奴。特に使ってない。
-# zplug "stedolan/jq", \
-#     from:gh-r, \
-#     as:command, \
-#     rename-to:jq
-# zplug "b4b4r07/emoji-cli", \
-#     on:"stedolan/jq"
-
 # check コマンドで未インストール項目があるかどうか verbose にチェックし
 # false のとき（つまり未インストール項目がある）y/N プロンプトで
 # インストールする
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+printf "Install? [y/N]: "
+if read -q; then
+echo; zplug install
+fi
 fi
 
 # プラグインを読み込み、コマンドにパスを通すverboseつけると毎回load ~ って出てくるから消す
 # zplug load --verbose
 zplug load
 ###### Zplug settings end ###############
-# fuzzy finder
-# 色々できるみたい
-# https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
-# brewで入れるか、gitで入れれる
-# これは多分そのfzfを読み込むコードかな？
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 # aws入れてないから消す
 # source /usr/local/bin/aws_zsh_completer.sh
 
@@ -118,9 +95,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
-# Ctrl+rでヒストリーのインクリメンタルサーチ、Ctrl+sで逆順
-bindkey '^r' history-incremental-pattern-search-backward
-bindkey '^s' history-incremental-pattern-search-forward
+# fzfを使ったコマンド履歴検索
+bindkey "^r" fzf-history-widget
 
 #
 # end
@@ -132,8 +108,8 @@ export PATH=$PATH:/usr/local/go/bin
 # pnpm
 export PNPM_HOME="/Users/gotoharuka/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
@@ -149,3 +125,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # GPG
 export GPG_TTY=$(tty)
+
+# alias
+alias gs="git branch | fzf | xargs git switch"
+
+# fuzzy finder
+# 色々できるみたい
+# https://momozo.tech/2021/03/10/fzf%E3%81%A7zsh%E3%82%BF%E3%83%BC%E3%83%9F%E3%83%8A%E3%83%AB%E4%BD%9C%E6%A5%AD%E3%82%92%E5%8A%B9%E7%8E%87%E5%8C%96/
+# brewで入れるか、gitで入れれる
+# これは多分そのfzfを読み込むコードかな？
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
