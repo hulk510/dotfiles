@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  -- the colorscheme should be available when starting Neovim
+  -- ColorScheme
   {
     "folke/tokyonight.nvim",
     lazy = false,    -- make sure we load this during startup if it is your main colorscheme
@@ -22,6 +22,7 @@ require("lazy").setup({
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
+  -- finder
   {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.6',
@@ -31,5 +32,35 @@ require("lazy").setup({
       require('plugins.telescope').setup()
     end
   },
-  { 'akinsho/toggleterm.nvim', version = "*", config = function() require("plugins.toggleterm").setup() end }
+  -- Terminal
+  { 'akinsho/toggleterm.nvim', version = "*", config = function() require("plugins.toggleterm").setup() end },
+  -- Comment
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  },
+  -- Syntax Highlight
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", config = function() require("plugins.treesitter").setup() end},
+  {
+  "nvim-tree/nvim-tree.lua",
+  version = "*",
+  lazy = false,
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  config = function()
+    require("nvim-tree").setup {}
+  end,
+},
+
+{
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require("plugins.lualine").setup()
+    end
+}
 }, opts)

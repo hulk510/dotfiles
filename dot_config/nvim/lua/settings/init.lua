@@ -36,3 +36,5 @@ vim.opt.relativenumber = true
 vim.opt.signcolumn = 'yes' 
 vim.opt.cursorline = true
 
+-- lualineでstatus表示しているのでoffに
+vim.opt.showmode = false
