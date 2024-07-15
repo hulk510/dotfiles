@@ -1,3 +1,3 @@
 require("plugins")
 require("settings")
-require("keymaps")
+require("dot_config.nvimm.lua.config.keymaps")
