@@ -7,6 +7,8 @@ managed with [chezmoi](https://chezmoi.io/).
 required: `curl` or `wget`
 optional: [chezmoi](https://www.chezmoi.io)
 
+System Requirements is 'darwin' or 'linux'
+
 ## How to setup
 
 1. install chezmoi and initialize dotfiles

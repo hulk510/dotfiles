@@ -4,7 +4,7 @@ alias pnpm='corepack pnpm'
 alias pnpx='corepack pnpx'
 
 export PATH="/Users/gotoharuka/.deno/bin:$PATH"
-export PATH="`python3 -m site --user-base`/bin:$PATH"
+export PATH="$(python3 -m site --user-base)/bin:$PATH"
 
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
@@ -17,46 +17,6 @@ compinit
 autoload -Uz colors
 colors
 
-# まずこれでzplugのインストールして
-# curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-source ~/.zplug/init.zsh
-
-###### Zplug settings start ###############
-# 書き方
-# 「ユーザ名/リポジトリ名」で記述し、ダブルクォートで見やすく括る（括らなくてもいい）
-
-# 間違えたコマンドは赤色に、正しいコマンドは緑にハイライト
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# historyサーチをやりやすくする。使ってるか分からん。
-zplug "zsh-users/zsh-history-substring-search"
-
-# tabで補完できる
-zplug "zsh-users/zsh-completions"
-
-# コマンド途中にサジェストを出す。
-zplug "zsh-users/zsh-autosuggestions"
-
-# zsh が非同期になる
-zplug "mafredri/zsh-async", from:github
-# theme
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zstyle :prompt:pure:path color blue
-
-# check コマンドで未インストール項目があるかどうか verbose にチェックし
-# false のとき（つまり未インストール項目がある）y/N プロンプトで
-# インストールする
-if ! zplug check --verbose; then
-printf "Install? [y/N]: "
-if read -q; then
-echo; zplug install
-fi
-fi
-
-# プラグインを読み込み、コマンドにパスを通すverboseつけると毎回load ~ って出てくるから消す
-# zplug load --verbose
-zplug load
-###### Zplug settings end ###############
 # aws入れてないから消す
 # source /usr/local/bin/aws_zsh_completer.sh
 
@@ -114,7 +74,8 @@ esac
 # pnpm end
 
 # config asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ] &&
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
 
 # bun completions
 [ -s "/Users/gotoharuka/.bun/_bun" ] && source "/Users/gotoharuka/.bun/_bun"
@@ -135,4 +96,4 @@ alias gs="git branch | fzf | xargs git switch"
 # brewで入れるか、gitで入れれる
 # これは多分そのfzfを読み込むコードかな？
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+[ -f ~/.zplug.sh ] && source ~/.zplug.sh

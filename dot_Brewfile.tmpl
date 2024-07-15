@@ -1,49 +1,39 @@
-# brew bundle cleanup // アンインストールとか勝手にやってくれる
-# brew bundle // インストール
+# TODO: 仕事用でしか使わないパッケージとかも定義しておきたい
+# できる限りインストールする数は減らしておけると便利だし、依存関係も減らせる
+# 初期にインストールするものだけシンプルに追加しておいて、必要に応じてbrew installとかした方がいいんじゃないか？
 
-# TODO: linuxbrewでも使うからmacとlinuxで分けるか.tmplファイルにする
-
-cask_args appdir: "/Applications"
-
-# brew tap は指定したGitHubリポジトリをHomebrewに登録する仕組みらしい
-tap "heroku/brew"
-# tap "homebrew/bundle"
-tap "homebrew/cask"
-# tap "homebrew/cask-versions"
-# tap "homebrew/core"
-tap "homebrew/cask-fonts"
-# tap "dashlane/tap"
-
-brew "go"
-brew "swift-format"
-brew "awscli"
-brew "asdf"
 brew "git"
-brew "heroku"
-brew "heroku/brew/heroku-node"
+brew "asdf"
 brew "jq"
-brew "mas" # ターミナルからApp Storeのアプリをインストールできるようにするやつ
 brew "tree"
-brew "watch"
-brew "wget"
 brew "fzf"
 brew "tmux"
-brew "openjdk"
 brew "gh" # github cli
-brew "fastlane"
 brew "chezmoi"
-# brew "dashlane-cli"
-brew "minio/stable/mc"
-brew "helm"
 brew "neovim"
 brew "gpg"
-brew "pinentry-mac" # for mac gpg pineentryなのでmacの時のみインストールするようにする
 brew "rust"
 brew "rustfmt"
 brew "ripgrep" # grepするツールかな？Telescopeのlive_grepで使用するため入れている
+brew "zplug"
+brew "go"
+
+# optional
+# brew "swift-format"
+# brew "awscli"
+# brew "minio/stable/mc"
+# brew "helm"
+# brew "fastlane"
+# brew "openjdk"
+
+{{ if eq .chezmoi.os "darwin" -}}
+tap "dashlane/tap"
+cask_args appdir: "/Applications"
+brew "mas" # ターミナルからApp Storeのアプリをインストールできるようにするやつ
+brew "pinentry-mac"
+brew "dashlane-cli"
 
 ## caskを使うとMacのGUIアプリをインストールできる
-# いるものいらないもの自分で考えて適当に
 cask "slack"
 cask "appcleaner"
 cask "docker"
@@ -73,6 +63,7 @@ cask "ticktick"
 cask "wezterm"
 cask "font-fira-code"
 cask "blender"
-
 # 基本的にcaskでインストールできるならcaskでいいかなって思う
 mas "LINE", id: 539883307
+
+{{ end -}}
