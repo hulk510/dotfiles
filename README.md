@@ -1,20 +1,19 @@
-## dotfiles
+# github.com/hulk510/dotfiles
 
-chezmoi を使ってる。
-PAT に関しては chezmoi のテンプレートで展開しているため別途 dashlane-cli のインストールも必要
+managed with [chezmoi](https://chezmoi.io/).
 
-### 手順
+## Requirements
 
-1. chezmoi のインストール Brew とかで入れる
-2. brewfile で dashlane-cli 含めパッケージ入れる
-3. dashlane-cli にログイン
-4. chezmoi apply -v
+required: `curl` or `wget`
+optional: [chezmoi](https://www.chezmoi.io)
 
-### 備考
+## How to setup
 
-chezmoi は直接ファイルを変更して apply できる。
-ただ git clone しただけの場合は chezmoi の管理下にならないので apply しても効かない。
+1. install chezmoi and initialize dotfiles
+`curl -fsSL https://github.com/hulk510/dotfiles/raw/main/install.sh | sh`
 
-変数展開は template にしないとダメ。すでにあるファイルとかをテンプレートにすることもできる（フォルダは知らん）
-chezmoi chattr +template ~/.config/gh/hosts.yml.personal
-こんな感じで指定すると hosts.yml.personal.tmpl ができる
+### Manual setup
+
+If you already have chezmoi. You can use chezmoi command.
+
+1. `$ chezmoi init https://github.com/hulk510/dotfiles.git`
