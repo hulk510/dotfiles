@@ -4,10 +4,10 @@ set -euo pipefail
 
 {{ if eq .chezmoi.os "linux" -}}
 
-echo "🧰 Installing essential packages..."
-sudo apt update
-sudo apt install build-essential procps file git -y
-echo "✅ Installed essential packages"
+# echo "🧰 Installing essential packages..."
+# sudo apt update
+# sudo apt install build-essential procps file git -y
+# echo "✅ Installed essential packages"
 
 {{ end -}}
 
