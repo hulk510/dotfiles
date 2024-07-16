@@ -16,7 +16,7 @@ System Requirements is `darwin` or `linux`, `zsh` shell is only available.
 
 1. Run Install Script
 ```
-$ curl -fsSL https://github.com/hulk510/dotfiles/raw/main/install.sh | sh
+$ curl -fsSL https://raw.githubusercontent.com/hulk510/dotfiles/main/install.sh | sh
 ```
 Running the script will start the installation and application of chezmoi.
 
