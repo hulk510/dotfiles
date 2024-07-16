@@ -2,7 +2,7 @@
 
 # -e: exit on error
 # -u: exit on unset variables
-set -euo pipefail
+set -eu
 
 # GitHub Actions 環境でない場合にのみ以下を実行
 if [ -z "${GITHUB_ACTIONS:-}" ]; then
