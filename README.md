@@ -7,15 +7,21 @@ managed with [chezmoi](https://chezmoi.io/).
 required: `curl` or `wget`
 optional: [chezmoi](https://www.chezmoi.io)
 
-System Requirements is 'darwin' or 'linux'
+System Requirements is `darwin` or `linux`, `zsh` shell is only available.
+
+> [!NOTE]
+> There is no guarantee that it will work perfectly, please execute at your own risk.
 
 ## How to setup
 
-1. install chezmoi and initialize dotfiles
-`curl -fsSL https://github.com/hulk510/dotfiles/raw/main/install.sh | sh`
+1. Run Install Script
+```
+$ curl -fsSL https://github.com/hulk510/dotfiles/raw/main/install.sh | sh
+```
+Running the script will start the installation and application of chezmoi.
 
 ### Manual setup
 
 If you already have chezmoi. You can use chezmoi command.
 
-1. `$ chezmoi init https://github.com/hulk510/dotfiles.git`
+Run: `chezmoi init --apply hulk510`
