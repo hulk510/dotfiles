@@ -1,5 +1,8 @@
 
 settings/
+scripts/
 
 Makefile
 README.md
+install.sh
+.github/

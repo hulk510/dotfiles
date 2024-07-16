@@ -1,9 +1,12 @@
+{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-if [ "$(uname)" != "Darwin" ] ; then
-	echo "Not macOS!"
-	exit 1
-fi
+set -euo pipefail
+
+echo ""
+echo "🔧 Setting Mac defaults..."
+echo ""
+
 # 自分でやる必要があるもの
 # - ライブ変換のオフ
 # - mission controlのキーボードショートカット
@@ -128,7 +131,6 @@ defaults -currentHost write -g com.apple.keyboard.modifiermapping.${keyboard_id}
 # スペルの訂正を有効
 defaults write -g NSAutomaticSpellingCorrectionEnabled -bool true
 
-
 # ====================
 #
 # SystemUIServer
@@ -150,13 +152,12 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 # ====================
 
 # Safariのデバッグメニューを有効化
-defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+# defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
 
 # 自動修正の無効化
-defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
-for app in "Dock" \
-	"Finder" \
-	"SystemUIServer" \
-  "Safari"; do
-	killall "${app}" &> /dev/null
-done
+# defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
+
+echo ""
+echo "Done. Some changes may require a restart to take effect."
+echo ""
+{{ end }}

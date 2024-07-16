@@ -11,7 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+require("dot_config.nvimm.lua.config.lazy").setup({
   -- ColorScheme
   {
     "folke/tokyonight.nvim",
@@ -19,7 +19,10 @@ require("lazy").setup({
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
       -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
+      vim.cmd([[colorscheme tokyonight-night]])
+      require("tokyonight").setup({
+        transparent = true
+      })
     end,
   },
   -- finder
@@ -29,11 +32,11 @@ require("lazy").setup({
     -- or                              , branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('plugins.telescope').setup()
+      require('dot_config.nvim.bakm.lua.plugins.telescope').setup()
     end
   },
   -- Terminal
-  { 'akinsho/toggleterm.nvim', version = "*", config = function() require("plugins.toggleterm").setup() end },
+  { 'akinsho/toggleterm.nvim', version = "*", config = function() require("dot_config.nvim.bakm.lua.plugins.toggleterm").setup() end },
   -- Comment
   {
     'numToStr/Comment.nvim',
@@ -43,7 +46,7 @@ require("lazy").setup({
     lazy = false,
   },
   -- Syntax Highlight
-  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", config = function() require("plugins.treesitter").setup() end},
+  {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate", config = function() require("dot_config.nvim.bakm.lua.plugins.treesitter").setup() end},
   {
   "nvim-tree/nvim-tree.lua",
   version = "*",
@@ -60,7 +63,11 @@ require("lazy").setup({
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require("plugins.lualine").setup()
+      require("dot_config.nvim.bakm.lua.plugins.lualine").setup({
+options = {
+  theme = 'tokyonight'
+}}
+      )
     end
 }
 }, opts)

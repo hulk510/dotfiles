@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -euo pipefail
+
+{{ if eq .chezmoi.os "linux" -}}
+
+echo "🧰 Installing essential packages..."
+sudo apt update
+sudo apt install build-essential procps file git -y
+echo "✅ Installed essential packages"
+
+{{ end -}}
+
+# install homebrew
+if ! command -v brew >/dev/null; then
+  echo "🧰 Installing Homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "✅ Installed Homebrew"
+fi
+
+# homebrewのパスを通す
+source ~/.zprofile
