@@ -4,30 +4,10 @@
 # -u: exit on unset variables
 set -eu
 
-# GitHub Actions 環境でない場合にのみ以下を実行
-if [ -z "${GITHUB_ACTIONS:-}" ]; then
-    # ターミナルからの入力を受け取る
-    if [ -t 0 ]; then
-        echo "Do you want to install Dotfiles? [y/N] "
-        read response
-        case "$response" in
-            [yY][eE][sS]|[yY])
-                ;;
-            *)
-                echo "Dotfiles installation skipped"
-                exit 0
-                ;;
-        esac
-    else
-        echo "No terminal input available, skipping Dotfiles installation"
-        exit 0
-    fi
-
-    # zsh のインストールチェック
-    if ! command -v zsh >/dev/null; then
-        echo "zsh is required to run chezmoi" >&2
-        exit 1
-    fi
+# zsh のインストールチェック
+if ! command -v zsh >/dev/null; then
+    echo "zsh is required to run chezmoi" >&2
+    exit 1
 fi
 
 if ! chezmoi="$(command -v chezmoi)"; then
