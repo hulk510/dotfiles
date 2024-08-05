@@ -8,6 +8,7 @@
 	gpgsign = true
 [core]
 	editor = vi
+	autocrlf = input
 [pull]
 	rebase = false
 	ff = only
