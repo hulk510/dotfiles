@@ -16,6 +16,8 @@ export PATH="$(python3 -m site --user-base)/bin:$PATH"
 
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # 補完
 autoload -U compinit
