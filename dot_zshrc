@@ -17,16 +17,23 @@ export PATH="$(python3 -m site --user-base)/bin:$PATH"
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
 
-# 補完
+# Zsh補完を有効化
 autoload -U compinit
 compinit
+
+# Bash互換補完を有効化
+autoload -U +X bashcompinit && bashcompinit
+
+# Terraform補完
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+
+# AWS補完
+complete -C '/opt/homebrew/bin/aws_completer' aws
 
 # 色を使用
 autoload -Uz colors
 colors
 
-# aws入れてないから消す
-# source /usr/local/bin/aws_zsh_completer.sh
 
 # ------------------------------
 # zsh settings start
