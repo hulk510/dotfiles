@@ -5,14 +5,7 @@ source <(fzf --zsh)
 [ -f ~/.zplug.sh ] && source ~/.zplug.sh
 
 # alias
-alias yarn='corepack yarn'
-alias yarnpkg='corepack yarnpkg'
-alias pnpm='corepack pnpm'
-alias pnpx='corepack pnpx'
 alias gs="git branch | fzf | xargs git switch"
-
-export PATH="/Users/gotoharuka/.deno/bin:$PATH"
-export PATH="$(python3 -m site --user-base)/bin:$PATH"
 
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
@@ -80,17 +73,8 @@ bindkey "^r" fzf-history-widget
 # goのpath通す
 export PATH=$PATH:/usr/local/go/bin
 
-# pnpm
-export PNPM_HOME="/Users/gotoharuka/Library/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 # config asdf
-[ -f "$(brew --prefix asdf)/libexec/asdf.sh" ] &&
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # bun completions
 [ -s "/Users/gotoharuka/.bun/_bun" ] && source "/Users/gotoharuka/.bun/_bun"

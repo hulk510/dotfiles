@@ -37,8 +37,9 @@ brew "tfenv" # tfenvでterraformのバージョン管理をする
 tap "dashlane/tap"
 cask_args appdir: "/Applications"
 brew "mas" # ターミナルからApp Storeのアプリをインストールできるようにするやつ
-brew "pinentry-mac"
-brew "dashlane-cli"
+brew "pinentry-mac" # gpgのパスフレーズ入力用
+brew "dashlane-cli" # dashlaneのcli版。chezmoiで機密情報を埋め込むのに使う
+brew "kind" # kubernetes in docker
 
 ## caskを使うとMacのGUIアプリをインストールできる
 cask "slack"
@@ -62,7 +63,7 @@ cask "postman"
 cask "unity-hub"
 cask "zoom"
 cask "kindle"
-cask "wireshark"
+cask "wireshark-app"
 cask "spotify"
 cask "fl-studio"
 cask "font-Hack-nerd-font" # font ~ nerd-fontで検索するといろんなフォントがあるはず
