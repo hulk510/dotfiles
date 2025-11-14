@@ -85,3 +85,13 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # GPG
 export GPG_TTY=$(tty)
+
+# kubectl completions
+# kubectlがインストールされている場合にのみ実行
+[ -x "$(command -v kubectl)" ] && \
+{
+  # Load the kubectl completion code for zsh[1] into the current shell
+  source <(kubectl completion zsh)
+  # Set the kubectl completion code for zsh[1] to autoload on startup
+  kubectl completion zsh > "${fpath[1]}/_kubectl"
+}
