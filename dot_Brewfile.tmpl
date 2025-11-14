@@ -17,7 +17,7 @@ brew "rustfmt"
 brew "ripgrep" # grepするツールかな？Telescopeのlive_grepで使用するため入れている
 brew "zplug"
 brew "starship" # クロスシェル対応の高速プロンプト
-brew "kubectx" # kubectlのcontext切り替えを簡単にするツール
+brew "kubectx" # kubectlのcontext/namespace切り替えツール（fzf統合）
 brew "go"
 brew "azure-cli"
 brew "helm"
@@ -37,10 +37,13 @@ brew "tfenv" # tfenvでterraformのバージョン管理をする
 
 {{ if eq .chezmoi.os "darwin" -}}
 tap "dashlane/tap"
+tap "heroku/brew"
 cask_args appdir: "/Applications"
 brew "mas" # ターミナルからApp Storeのアプリをインストールできるようにするやつ
 brew "pinentry-mac" # gpgのパスフレーズ入力用
 brew "dashlane-cli" # dashlaneのcli版。chezmoiで機密情報を埋め込むのに使う
+brew "yarn" # dashlane-cliの依存関係として必要
+brew "heroku/brew/heroku" # Heroku CLI
 brew "kind" # kubernetes in docker
 
 ## caskを使うとMacのGUIアプリをインストールできる
