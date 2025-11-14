@@ -4,6 +4,10 @@ source <(fzf --zsh)
 # Set up zplug
 [ -f ~/.zplug.sh ] && source ~/.zplug.sh
 
+# Initialize starship prompt
+# https://starship.rs/ja-JP/
+eval "$(starship init zsh)"
+
 # alias
 alias gs="git branch | fzf | xargs git switch"
 

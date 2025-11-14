@@ -28,12 +28,6 @@ zplug "zsh-users/zsh-completions"
 # コマンド途中にサジェストを出す。
 zplug "zsh-users/zsh-autosuggestions"
 
-# zsh が非同期になる
-zplug "mafredri/zsh-async", from:github
-# theme
-zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-zstyle :prompt:pure:path color blue
-
 zplug load
 
 # Install plugins if there are plugins that have not been installed

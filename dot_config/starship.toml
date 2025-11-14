@@ -1,0 +1,94 @@
+# Starship設定ファイル
+# 詳細: https://starship.rs/config/
+
+# プロンプトの形式（見やすくスタイリッシュ）
+format = """
+$username$hostname$kubernetes$docker_context$line_break\
+$directory$git_branch$git_status$nodejs$golang$line_break\
+$time$cmd_duration$character"""
+
+# ユーザー名（SSH接続時のみ表示）
+[username]
+format = "[👤 $user]($style) "
+style_user = "bold yellow"
+style_root = "bold red"
+show_always = false
+
+# ホスト名（SSH接続時のみ表示）
+[hostname]
+format = "[@$hostname]($style) "
+style = "bold green"
+ssh_only = true
+
+# 時刻表示（右端風に控えめに）
+[time]
+disabled = false
+format = '[ $time](dimmed white) '
+time_format = "%H:%M"
+style = "dimmed white"
+
+# コマンド実行時間の表示（2秒以上）
+[cmd_duration]
+min_time = 2_000
+format = "[⏱ $duration](bold yellow) "
+
+# ディレクトリ表示（シンプル・フルパス）
+[directory]
+truncation_length = 5
+truncate_to_repo = false
+truncation_symbol = "…/"
+home_symbol = "~"
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "bold cyan"
+read_only = " \uF023"
+
+# Git ブランチ
+[git_branch]
+symbol = "\uF418 "
+format = "[$symbol$branch]($style) "
+style = "bold purple"
+
+# Git ステータス（ミニマルでわかりやすく）
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold yellow"
+conflicted = "\u26A0 "
+ahead = "\u2191${count} "
+behind = "\u2193${count} "
+diverged = "\u2195\u2191${ahead_count}\u2193${behind_count} "
+modified = "\u25CF "
+staged = "\u2713 "
+untracked = "\u25CB "
+deleted = "\u2717 "
+renamed = "\u27A1 "
+stashed = "\uF48B "
+
+# Kubernetes（アイコン付き・常に表示）
+[kubernetes]
+format = '[☸ $context\($namespace\)](bold blue) '
+disabled = false
+
+# Docker context
+[docker_context]
+format = '[🐳 $context](bold blue) '
+only_with_files = true
+
+# 各言語のバージョン表示（よく使う言語のみ）
+[nodejs]
+symbol = "\uE718 "
+format = "[$symbol$version]($style) "
+style = "bold green"
+
+[golang]
+symbol = "\uE724 "
+format = "[$symbol$version]($style) "
+style = "bold cyan"
+
+# プロンプト文字（シンプルな矢印・色で成功/失敗を表示）
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+
+# 改行を制御
+[line_break]
+disabled = false
