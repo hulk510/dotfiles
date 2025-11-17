@@ -68,16 +68,8 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- ===================================================================
 -- デバッグ・エラー確認
 -- ===================================================================
--- Vimメッセージ履歴（コマンドラインに出るエラーなど）
-keymap("n", "<leader>vm", "<cmd>messages<CR>", { desc = "Vim Messages" })
-
--- 通知履歴（右上のポップアップ履歴）
-keymap("n", "<leader>vn", "<cmd>Notifications<CR>", { desc = "Notification History" })
-
--- 通知を全て消す
-keymap("n", "<leader>vd", function()
-  require("notify").dismiss({ silent = true, pending = true })
-end, { desc = "Dismiss Notifications" })
+-- Note: <leader>v* のメッセージ・通知関連は noice.nvim に統合されています
+-- <leader>vn: Noice全メッセージ, <leader>vl: 最後のメッセージ, <leader>vh: 履歴, <leader>vd: 全消去
 
 -- ===================================================================
 -- トグル機能

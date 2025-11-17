@@ -61,18 +61,6 @@ return {
     end,
   },
 
-  -- better-escape.nvim: jjでノーマルモードに戻る
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    opts = {
-      mapping = { "jj", "jk" }, -- jj または jk でノーマルモードに
-      timeout = 200,
-      clear_empty_lines = false,
-      keys = "<Esc>",
-    },
-  },
-
   -- vim-matchup: %で対応する括弧にジャンプ（拡張版）
   {
     "andymass/vim-matchup",
