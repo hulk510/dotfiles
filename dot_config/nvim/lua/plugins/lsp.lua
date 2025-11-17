@@ -154,6 +154,10 @@ return {
       }
 
       -- LSPサーバーを自動セットアップ
+      -- 警告抑制: vim.deprecate を一時的に無効化
+      local deprecate = vim.deprecate
+      vim.deprecate = function() end
+
       local mason_lspconfig = require("mason-lspconfig")
       local installed_servers = mason_lspconfig.get_installed_servers()
 
@@ -163,6 +167,9 @@ return {
         server_config.capabilities = capabilities
         lspconfig[server_name].setup(server_config)
       end
+
+      -- vim.deprecate を元に戻す
+      vim.deprecate = deprecate
     end,
   },
 }
