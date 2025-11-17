@@ -15,11 +15,11 @@ add_newline = true
 
 # プロンプトフォーマット定義
 # 1行目: ディレクトリ, Git情報, 時刻, K8s
-# 2行目: コマンド入力位置
+# 2行目: コマンド入力位置（╭─ と ╰─ で繋がる）
 format = """
-$directory$git_branch$git_status[─](bold white)$time$kubernetes\
+[╭─ ](bold green)$directory$git_branch$git_status$time$kubernetes\
 $line_break\
-$character"""
+[╰─>](bold green) """
 
 # ============================================================
 # Kubernetes コンテキスト表示
@@ -90,10 +90,8 @@ time_format = "%H:%M"
 # コマンド入力プロンプト
 # ============================================================
 [character]
-# 成功時: 緑色の ❯
-success_symbol = "[❯](bold green)"
-# エラー時: 赤色の ❯
-error_symbol = "[❯](bold red)"
+# characterは使用しない（formatで直接制御）
+disabled = true
 
 # ============================================================
 # 改行制御
