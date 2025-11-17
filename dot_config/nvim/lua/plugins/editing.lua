@@ -16,31 +16,26 @@ return {
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "lua",
-          "vim",
-          "vimdoc",
-          "query",
-          "javascript",
-          "typescript",
-          "tsx",
-          "go",
-          "python",
-          "rust",
-          "html",
-          "css",
-          "json",
-          "yaml",
-          "markdown",
-          "markdown_inline",
-          "bash",
-          "diff",  -- Telescope git差分表示用
-        },
+        ensure_installed = "all",  -- よく使う言語は全部インストール
+        -- または個別指定したい場合:
+        -- ensure_installed = {
+        --   "lua", "vim", "vimdoc", "query",
+        --   "javascript", "typescript", "tsx",
+        --   "go", "python", "rust",
+        --   "html", "css", "json", "yaml", "toml",
+        --   "markdown", "markdown_inline",
+        --   "bash", "sh", "diff",
+        --   "dockerfile", "gitignore", "sql", "xml",
+        -- },
         auto_install = true,
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
+        -- パーサーがない時のエラーを抑制
+        ignore_install = {},
+        parser_install_dir = nil,
+        sync_install = false,  -- 非同期でインストール
         indent = {
           enable = true,
         },

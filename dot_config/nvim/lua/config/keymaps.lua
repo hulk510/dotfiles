@@ -68,10 +68,29 @@ keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- ===================================================================
 -- デバッグ・エラー確認
 -- ===================================================================
--- メッセージ履歴表示
-keymap("n", "<leader>m", "<cmd>messages<CR>", { desc = "Show messages" })
+-- Vimメッセージ履歴（コマンドラインに出るエラーなど）
+keymap("n", "<leader>vm", "<cmd>messages<CR>", { desc = "Vim Messages" })
 
--- 通知履歴表示（snacks.nvim）
-keymap("n", "<leader>n", function()
-  require("snacks").notifier.show_history()
-end, { desc = "Show notification history" })
+-- 通知履歴（右上のポップアップ履歴）
+keymap("n", "<leader>vn", "<cmd>Notifications<CR>", { desc = "Notification History" })
+
+-- 通知を全て消す
+keymap("n", "<leader>vd", function()
+  require("notify").dismiss({ silent = true, pending = true })
+end, { desc = "Dismiss Notifications" })
+
+-- ===================================================================
+-- トグル機能
+-- ===================================================================
+-- 自動保存のトグル
+keymap("n", "<leader>ta", function()
+  if vim.g.auto_save_enabled == nil then
+    vim.g.auto_save_enabled = true
+  end
+  vim.g.auto_save_enabled = not vim.g.auto_save_enabled
+  if vim.g.auto_save_enabled then
+    vim.notify("Auto-save enabled", vim.log.levels.INFO)
+  else
+    vim.notify("Auto-save disabled", vim.log.levels.INFO)
+  end
+end, { desc = "Toggle auto-save" })

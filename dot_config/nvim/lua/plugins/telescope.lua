@@ -47,6 +47,31 @@ return {
         path_display = { "truncate" },
         sorting_strategy = "ascending",
         layout_strategy = "horizontal",
+        -- Treesitterパーサーがない時のエラーを抑制
+        buffer_previewer_maker = function(filepath, bufnr, opts)
+          opts = opts or {}
+          local previewers = require("telescope.previewers")
+          local Job = require("plenary.job")
+
+          Job:new({
+            command = "file",
+            args = { "--mime-type", "-b", filepath },
+            on_exit = function(j)
+              local mime_type = vim.split(j:result()[1], "/")[1]
+              if mime_type == "text" then
+                -- テキストファイルならプレビュー
+                vim.schedule(function()
+                  previewers.buffer_previewer_maker(filepath, bufnr, opts)
+                end)
+              else
+                -- バイナリファイルなら情報表示のみ
+                vim.schedule(function()
+                  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "Binary file: " .. filepath })
+                end)
+              end
+            end,
+          }):start()
+        end,
         layout_config = {
           horizontal = {
             prompt_position = "top",

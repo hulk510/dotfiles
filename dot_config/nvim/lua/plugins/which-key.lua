@@ -28,13 +28,14 @@ return {
       { "<leader>b", group = "Buffer" },
       { "<leader>g", group = "Git" },
       { "<leader>l", group = "LSP" },
-      { "<leader>s", group = "Search/Replace" },
+      { "<leader>s", desc = "Replace word under cursor" },
       { "<leader>c", group = "Copilot" },
+      { "<leader>t", group = "Toggle" },
+      { "<leader>v", group = "View (Messages/Notifications)" },
+      { "<leader>x", group = "Diagnostics/Quickfix" },
       { "<leader>e", desc = "File Explorer" },
       { "<leader>w", desc = "Save file" },
       { "<leader>q", desc = "Quit" },
-      { "<leader>m", desc = "Show messages" },
-      { "<leader>n", desc = "Notification history" },
     })
   end,
 }

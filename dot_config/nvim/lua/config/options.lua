@@ -58,3 +58,45 @@ opt.timeoutlen = 300       -- キーマッピングのタイムアウト
 opt.scrolloff = 8          -- スクロール時の余白
 opt.sidescrolloff = 8
 opt.completeopt = "menu,menuone,noselect"  -- 補完メニュー
+
+-- ===================================================================
+-- 初心者向け: 混乱しやすい機能をオフ
+-- ===================================================================
+-- マクロ記録を無効化（誤ってqを押してしまう問題を防ぐ）
+vim.keymap.set("n", "q", "<Nop>")  -- 通常のq（マクロ記録）を無効化
+vim.keymap.set("n", "Q", "<Nop>")  -- Ex モードを無効化
+
+-- ===================================================================
+-- 初心者向け: わかりやすいエラーメッセージ
+-- ===================================================================
+opt.shortmess:append("c")  -- 補完メニューのメッセージを短く
+opt.shortmess:remove("F")  -- ファイル情報は表示
+
+-- ===================================================================
+-- 初心者向け: 安全な設定
+-- ===================================================================
+opt.confirm = true         -- 未保存ファイルの終了時に確認
+opt.hidden = true          -- バッファを隠せるように（保存してなくても別ファイルを開ける）
+
+-- ===================================================================
+-- 不要な機能を無効化
+-- ===================================================================
+-- 組み込みプラグインの無効化（使わないものを軽量化）
+vim.g.loaded_gzip = 1
+vim.g.loaded_zip = 1
+vim.g.loaded_zipPlugin = 1
+vim.g.loaded_tar = 1
+vim.g.loaded_tarPlugin = 1
+vim.g.loaded_getscript = 1
+vim.g.loaded_getscriptPlugin = 1
+vim.g.loaded_vimball = 1
+vim.g.loaded_vimballPlugin = 1
+vim.g.loaded_2html_plugin = 1
+vim.g.loaded_matchit = 1  -- vim-matchupを使うので無効化
+vim.g.loaded_matchparen = 1  -- vim-matchupを使うので無効化
+vim.g.loaded_logiPat = 1
+vim.g.loaded_rrhelper = 1
+vim.g.loaded_netrw = 1  -- neo-treeを使うので無効化
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrwSettings = 1
+vim.g.loaded_netrwFileHandlers = 1

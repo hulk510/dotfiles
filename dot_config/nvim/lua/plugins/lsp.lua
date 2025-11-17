@@ -29,12 +29,13 @@ return {
       "neovim/nvim-lspconfig",
     },
     opts = {
-      -- 自動でインストールするLSP (mason-lspconfig の名前を使用)
+      -- 自動でインストールするLSP
       ensure_installed = {
         "lua_ls",        -- Lua
         "gopls",         -- Go
         "pyright",       -- Python
         "rust_analyzer", -- Rust
+        "ts_ls",         -- TypeScript/JavaScript
         "html",          -- HTML
         "cssls",         -- CSS
         "jsonls",        -- JSON
@@ -152,16 +153,16 @@ return {
         },
       }
 
-      -- mason-lspconfigのhandlersで自動設定
-      require("mason-lspconfig").setup_handlers({
-        -- デフォルトハンドラー
-        function(server_name)
-          local server_config = servers[server_name] or {}
-          server_config.on_attach = on_attach
-          server_config.capabilities = capabilities
-          lspconfig[server_name].setup(server_config)
-        end,
-      })
+      -- LSPサーバーを自動セットアップ
+      local mason_lspconfig = require("mason-lspconfig")
+      local installed_servers = mason_lspconfig.get_installed_servers()
+
+      for _, server_name in ipairs(installed_servers) do
+        local server_config = servers[server_name] or {}
+        server_config.on_attach = on_attach
+        server_config.capabilities = capabilities
+        lspconfig[server_name].setup(server_config)
+      end
     end,
   },
 }
