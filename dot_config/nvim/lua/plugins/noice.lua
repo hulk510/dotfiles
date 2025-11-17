@@ -62,10 +62,10 @@ return {
       view_history = "messages", -- :messages で履歴表示
       view_search = "virtualtext", -- 検索結果を仮想テキストで
     },
-    -- ポップオーバーの設定
+    -- ポップオーバーの設定（コマンドライン補完）
     popupmenu = {
       enabled = true,
-      backend = "nui", -- "nui" または "cmp"
+      backend = "cmp", -- cmpを使用（nvim-cmpの補完スタイル）
     },
     -- 通知の設定
     notify = {
