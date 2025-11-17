@@ -10,7 +10,7 @@ return {
   config = function()
     require("catppuccin").setup({
       flavour = "mocha",  -- latte, frappe, macchiato, mocha
-      transparent_background = false,
+      transparent_background = true,  -- 背景を透過
       term_colors = true,
       styles = {
         comments = { "italic" },

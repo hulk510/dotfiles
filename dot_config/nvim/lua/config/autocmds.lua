@@ -65,3 +65,18 @@ autocmd({ "FocusLost", "BufLeave" }, {
     end
   end,
 })
+
+-- ===================================================================
+-- 透過設定
+-- ===================================================================
+-- カラースキーム読み込み後に透過を確実に適用
+autocmd("ColorScheme", {
+  group = augroup("transparent_background", { clear = true }),
+  callback = function()
+    vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
+    vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
+    vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
+  end,
+})
