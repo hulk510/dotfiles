@@ -95,11 +95,13 @@ return {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
     opts = {
-      timeout = 3000,
+      timeout = 8000, -- 8秒間表示
       background_colour = "#000000",
       render = "compact",
       stages = "fade",
       top_down = false,
+      max_width = 60, -- 最大幅
+      max_height = 10, -- 最大高さ
     },
     config = function(_, opts)
       local notify = require("notify")
