@@ -28,9 +28,9 @@ return {
     vim.keymap.set("i", "<C-]>", "<Plug>(copilot-next)", { desc = "Copilot: Next suggestion" })
     vim.keymap.set("i", "<C-[>", "<Plug>(copilot-previous)", { desc = "Copilot: Previous suggestion" })
 
-    -- Copilot無効化/有効化
-    vim.keymap.set("n", "<leader>cd", "<cmd>Copilot disable<cr>", { desc = "Copilot: Disable" })
+    -- Copilot制御
+    vim.keymap.set("n", "<leader>cp", "<cmd>Copilot disable<cr>", { desc = "Copilot: Disable" })
     vim.keymap.set("n", "<leader>ce", "<cmd>Copilot enable<cr>", { desc = "Copilot: Enable" })
-    vim.keymap.set("n", "<leader>cs", "<cmd>Copilot status<cr>", { desc = "Copilot: Status" })
+    vim.keymap.set("n", "<leader>ci", "<cmd>Copilot status<cr>", { desc = "Copilot: Status" })
   end,
 }
