@@ -161,11 +161,25 @@ return {
       local mason_lspconfig = require("mason-lspconfig")
       local installed_servers = mason_lspconfig.get_installed_servers()
 
+      -- フォーマッターをLSPから除外
+      local formatters = { "stylua", "prettier", "black", "isort", "shfmt", "gofumpt", "goimports" }
+
       for _, server_name in ipairs(installed_servers) do
-        local server_config = servers[server_name] or {}
-        server_config.on_attach = on_attach
-        server_config.capabilities = capabilities
-        lspconfig[server_name].setup(server_config)
+        -- フォーマッターはスキップ
+        local is_formatter = false
+        for _, formatter in ipairs(formatters) do
+          if server_name == formatter then
+            is_formatter = true
+            break
+          end
+        end
+
+        if not is_formatter then
+          local server_config = servers[server_name] or {}
+          server_config.on_attach = on_attach
+          server_config.capabilities = capabilities
+          lspconfig[server_name].setup(server_config)
+        end
       end
 
       -- vim.deprecate を元に戻す
