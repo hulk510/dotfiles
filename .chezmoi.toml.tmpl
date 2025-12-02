@@ -1,0 +1,11 @@
+{{- $minimal := false -}}
+{{- $profile := "personal" -}}
+
+{{- if stdinIsATTY -}}
+{{-   $minimal = promptBoolOnce . "minimal" "Minimal setup? (git, zsh, starship only)" -}}
+{{-   $profile = promptStringOnce . "profile" "Profile (personal/work)" -}}
+{{- end -}}
+
+[data]
+    minimal = {{ $minimal }}
+    profile = "{{ $profile }}"

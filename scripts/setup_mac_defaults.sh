@@ -1,7 +1,14 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
+# macOS の defaults 設定を適用するスクリプト
+# 使い方: ./setup_mac_defaults.sh
+
 set -euo pipefail
+
+if [[ "$(uname)" != "Darwin" ]]; then
+  echo "❌ This script is for macOS only." >&2
+  exit 1
+fi
 
 echo ""
 echo "🔧 Setting Mac defaults..."
@@ -158,6 +165,5 @@ defaults write com.apple.menuextra.battery ShowPercent -string "YES"
 # defaults write com.apple.Safari WebAutomaticSpellingCorrectionEnabled -bool false
 
 echo ""
-echo "Done. Some changes may require a restart to take effect."
+echo "✅ Done. Some changes may require a restart to take effect."
 echo ""
-{{ end }}

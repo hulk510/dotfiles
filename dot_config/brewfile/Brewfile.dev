@@ -1,0 +1,13 @@
+# 開発用パッケージ
+# 言語ランタイム、ツールチェーン
+
+brew "asdf"
+brew "go"
+brew "rust"
+brew "rustfmt"
+brew "deno"
+brew "oven-sh/bun/bun"
+brew "biome"
+brew "tree"
+brew "tmux"
+brew "gpg"

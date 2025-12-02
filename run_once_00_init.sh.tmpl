@@ -2,20 +2,11 @@
 
 set -euo pipefail
 
-{{ if eq .chezmoi.os "linux" -}}
-
-# echo "🧰 Installing essential packages..."
-# sudo apt update
-# sudo apt install build-essential procps file git -y
-# echo "✅ Installed essential packages"
-
-{{ end -}}
-
-# install homebrew
+# Homebrew は事前にインストールされている前提
 if ! command -v brew >/dev/null; then
-  echo "🧰 Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo "✅ Installed Homebrew"
+  echo "❌ Homebrew is required. Please install it first:" >&2
+  echo "   /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"" >&2
+  exit 1
 fi
 
 # homebrewのパスを通す

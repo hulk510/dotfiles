@@ -1,0 +1,12 @@
+# 必要最低限のパッケージ
+# このファイルは最小構成として使用
+
+brew "git"
+brew "chezmoi"
+brew "neovim"
+brew "starship"
+brew "zplug"
+brew "fzf"
+brew "ripgrep"
+brew "jq"
+brew "gh"

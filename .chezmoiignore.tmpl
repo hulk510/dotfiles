@@ -1,0 +1,19 @@
+# 常に無視するファイル
+settings/
+scripts/
+Makefile
+README.md
+install.sh
+.github/
+
+# Brewfile 関連（手動で brew bundle する）
+dot_config/brewfile/
+
+# minimal モードでは以下を無視
+{{ if .minimal }}
+dot_tmux.conf
+dot_config/nvim/**
+dot_config/wezterm/**
+run_once_01_install_brew_packages.sh
+run_once_99_mac_defaults.sh.tmpl
+{{ end }}
