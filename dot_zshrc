@@ -12,14 +12,46 @@ if command -v mise > /dev/null; then
   eval "$(mise activate zsh)"
 fi
 
-# alias
-alias gs="git branch | fzf | xargs git switch"
+# ------------------------------
+# Aliases
+# ------------------------------
 
-# brew bundle aliases
+# Git
+alias gs="git branch | fzf | xargs git switch"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
+alias gpl="git pull"
+alias gst="git status"
+alias gd="git diff"
+alias glog="git log --oneline -20"
+
+# Docker
+alias d="docker"
+alias dc="docker compose"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+alias dex="docker exec -it"
+alias dlog="docker logs -f"
+alias dcu="docker compose up -d"
+alias dcd="docker compose down"
+alias dcl="docker compose logs -f"
+alias dprune="docker system prune -f"
+
+# Brew
 alias bb="brew bundle --file=~/.config/brewfile/Brewfile.core"
 alias bb-dev="brew bundle --file=~/.config/brewfile/Brewfile.dev"
 alias bb-macos="brew bundle --file=~/.config/brewfile/Brewfile.macos"
 alias bb-all="bb && bb-dev && bb-macos"
+
+# General
+alias ll="ls -la"
+alias la="ls -a"
+alias ..="cd .."
+alias ...="cd ../.."
+alias c="clear"
+alias v="nvim"
+alias reload="source ~/.zshrc"
 
 # ------------------------------
 # Zsh settings
