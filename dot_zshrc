@@ -5,8 +5,12 @@ source <(fzf --zsh)
 [ -f ~/.zplug.sh ] && source ~/.zplug.sh
 
 # Initialize starship prompt
-# https://starship.rs/ja-JP/
 eval "$(starship init zsh)"
+
+# mise (runtime version manager)
+if command -v mise > /dev/null; then
+  eval "$(mise activate zsh)"
+fi
 
 # alias
 alias gs="git branch | fzf | xargs git switch"
@@ -17,91 +21,43 @@ alias bb-dev="brew bundle --file=~/.config/brewfile/Brewfile.dev"
 alias bb-macos="brew bundle --file=~/.config/brewfile/Brewfile.macos"
 alias bb-all="bb && bb-dev && bb-macos"
 
-# 新しくコマンドをインストールしたときに自動的に認識させる
+# ------------------------------
+# Zsh settings
+# ------------------------------
+
+# 補完
+autoload -U compinit && compinit
 zstyle ":completion:*:commands" rehash 1
 
-# Zsh補完を有効化
-autoload -U compinit
-compinit
-
-# Bash互換補完を有効化
-autoload -U +X bashcompinit && bashcompinit
-
-# Terraform補完
-complete -o nospace -C /opt/homebrew/bin/terraform terraform
-
-# AWS補完
-complete -C '/opt/homebrew/bin/aws_completer' aws
-
 # 色を使用
-autoload -Uz colors
-colors
+autoload -Uz colors && colors
 
-
-# ------------------------------
-# zsh settings start
-# ------------------------------
-
-# Ctrl+sのロック, Ctrl+qのロック解除を無効にする
-setopt no_flow_control
-
-# 他のターミナルとヒストリーを共有
-setopt share_history
-
-# cdコマンドを省略して、ディレクトリ名のみの入力で移動
-setopt auto_cd
-
-# 自動でpushdを実行
-# pushdはディレクトリを記憶してくれるやつ
-# これオンにしといてcdrで移動できるようにしておけばディレクトリ移動が楽になる
-setopt auto_pushd
-
-# pushdから重複を削除
-setopt pushd_ignore_dups
-
-# cdrコマンドを有効 ログアウトしても有効なディレクトリ履歴
-# cdr タブでリストを表示
-autoload -Uz add-zsh-hook
-autoload -Uz chpwd_recent_dirs cdr
-add-zsh-hook chpwd chpwd_recent_dirs
-
-# ヒストリーに重複を表示しない
-setopt histignorealldups
-
-# ヒストリーの保存量設定
+# 履歴
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+setopt share_history
+setopt histignorealldups
 
-# ------------------------------
-# zsh settings end
-# ------------------------------
+# ディレクトリ移動
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
 
-# fzfを使ったコマンド履歴検索
+# cdr（ディレクトリ履歴）
+autoload -Uz add-zsh-hook chpwd_recent_dirs cdr
+add-zsh-hook chpwd chpwd_recent_dirs
+
+# その他
+setopt no_flow_control
+
+# キーバインド
 bindkey "^r" fzf-history-widget
-
-# goのpath通す
-export PATH=$PATH:/usr/local/go/bin
-
-# config asdf
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-
-# bun completions
-[ -s "/Users/gotoharuka/.bun/_bun" ] && source "/Users/gotoharuka/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # GPG
 export GPG_TTY=$(tty)
 
 # kubectl completions
-# kubectlがインストールされている場合にのみ実行
-[ -x "$(command -v kubectl)" ] && \
-{
-  # Load the kubectl completion code for zsh[1] into the current shell
+if command -v kubectl > /dev/null; then
   source <(kubectl completion zsh)
-  # Set the kubectl completion code for zsh[1] to autoload on startup
-  kubectl completion zsh > "${fpath[1]}/_kubectl"
-}
+fi
