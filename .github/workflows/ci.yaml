@@ -26,11 +26,7 @@ jobs:
 
       - name: Run chezmoi init (non-interactive)
         run: |
-          chezmoi init --source="${{ github.workspace }}" --promptBool=minimal=true --promptString=profile=personal
-
-      - name: Run chezmoi apply
-        run: |
-          chezmoi apply --verbose
+          chezmoi init --source="${{ github.workspace }}" --promptBool=minimal=true --promptString=profile=personal --apply
 
       - name: Verify dotfiles
         run: |
