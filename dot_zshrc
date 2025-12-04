@@ -11,6 +11,12 @@ eval "$(starship init zsh)"
 # alias
 alias gs="git branch | fzf | xargs git switch"
 
+# brew bundle aliases
+alias bb="brew bundle --file=~/.config/brewfile/Brewfile.core"
+alias bb-dev="brew bundle --file=~/.config/brewfile/Brewfile.dev"
+alias bb-macos="brew bundle --file=~/.config/brewfile/Brewfile.macos"
+alias bb-all="bb && bb-dev && bb-macos"
+
 # 新しくコマンドをインストールしたときに自動的に認識させる
 zstyle ":completion:*:commands" rehash 1
 
