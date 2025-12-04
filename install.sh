@@ -4,6 +4,13 @@
 # -u: exit on unset variables
 set -eu
 
+# Homebrew のインストールチェック
+if ! command -v brew >/dev/null; then
+    echo "❌ Homebrew is required. Please install it first:" >&2
+    echo "   /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"" >&2
+    exit 1
+fi
+
 # zsh のインストールチェック
 if ! command -v zsh >/dev/null; then
     echo "zsh is required to run chezmoi" >&2

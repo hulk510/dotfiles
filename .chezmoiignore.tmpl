@@ -1,0 +1,17 @@
+# 常に無視するファイル
+settings/
+scripts/
+Makefile
+README.md
+install.sh
+.github/
+
+# Brewfile 関連（手動で brew bundle する）
+dot_config/brewfile/
+
+# minimal モードでは以下を無視
+{{ if .minimal }}
+dot_tmux.conf
+dot_config/nvim/**
+dot_config/wezterm/**
+{{ end }}

@@ -1,0 +1,44 @@
+# macOS用 GUIアプリ
+# 必要に応じて追加・削除
+
+cask_args appdir: "/Applications"
+
+# ユーティリティ
+brew "pinentry-mac"
+brew "dashlane/tap/dashlane-cli"
+
+# 基本アプリ
+cask "wezterm"
+cask "visual-studio-code"
+cask "docker-desktop"
+cask "rectangle"
+cask "appcleaner"
+cask "the-unarchiver"
+
+# 開発ツール
+cask "github"
+cask "tableplus"
+cask "postman"
+
+# ブラウザ
+cask "google-chrome"
+cask "vivaldi"
+
+# コミュニケーション
+cask "slack"
+cask "discord"
+
+# 生産性
+cask "notion"
+cask "ticktick"
+cask "chatgpt"
+
+# クリエイティブ
+cask "spotify"
+cask "ogdesign-eagle"
+
+# その他
+cask "kindle"
+cask "wireshark-app"
+cask "gitbutler"
+cask "font-hack-nerd-font"
