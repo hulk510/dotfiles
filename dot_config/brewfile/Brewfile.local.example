@@ -1,0 +1,9 @@
+# ローカル専用の一時的なパッケージ
+# このファイルは .gitignore に追加されているため、git には含まれません
+#
+# 使い方:
+#   brew bundle --file=~/.config/brewfile/Brewfile.local
+#
+# 例:
+# brew "some-temporary-tool"
+# cask "some-app-to-try"

@@ -1,11 +1,22 @@
 {{- $minimal := false -}}
 {{- $profile := "personal" -}}
+{{- $email := "dorian.51069@gmail.com" -}}
+{{- $name := "hulk510" -}}
+{{- $signingkey := "0310E7FE5125EE45" -}}
 
 {{- if stdinIsATTY -}}
 {{-   $minimal = promptBoolOnce . "minimal" "Minimal setup? (git, zsh, starship only)" -}}
 {{-   $profile = promptStringOnce . "profile" "Profile (personal/work)" -}}
+{{-   if eq $profile "work" -}}
+{{-     $email = promptStringOnce . "email" "Git email" -}}
+{{-     $name = promptStringOnce . "name" "Git name" -}}
+{{-     $signingkey = promptStringOnce . "signingkey" "GPG signing key (empty if not yet created)" -}}
+{{-   end -}}
 {{- end -}}
 
 [data]
     minimal = {{ $minimal }}
     profile = "{{ $profile }}"
+    email = "{{ $email }}"
+    name = "{{ $name }}"
+    signingkey = "{{ $signingkey }}"

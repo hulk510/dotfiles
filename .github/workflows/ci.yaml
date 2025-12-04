@@ -7,15 +7,35 @@ on:
   pull_request:
 
 jobs:
-  clone-and-install:
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/vscode/devcontainers/base:ubuntu
-      env:
-        CODESPACES: true
+  chezmoi-apply:
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - run: ./install.sh
-        shell: zsh {0}
-      - name: chezmoi data
-        run: '"$HOME/.local/bin/chezmoi" data'
+      - uses: actions/checkout@v4
+
+      - name: Install Homebrew (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo "/home/linuxbrew/.linuxbrew/bin" >> $GITHUB_PATH
+
+      - name: Install chezmoi
+        run: brew install chezmoi
+
+      - name: Run chezmoi init (non-interactive)
+        run: |
+          chezmoi init --source="${{ github.workspace }}" --promptBool=minimal=true --promptString=profile=personal
+
+      - name: Run chezmoi apply
+        run: |
+          chezmoi apply --verbose
+
+      - name: Verify dotfiles
+        run: |
+          echo "=== .gitconfig ==="
+          cat ~/.gitconfig
+          echo ""
+          echo "=== .zshrc ==="
+          cat ~/.zshrc

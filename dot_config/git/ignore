@@ -1,2 +1,7 @@
 .vscode/
 .tool-versions
+.mise.toml
+
+# ローカル専用 Brewfile
+
+Brewfile.local

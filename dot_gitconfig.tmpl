@@ -1,0 +1,26 @@
+[user]
+	email = {{ .email }}
+	name = {{ .name }}
+{{- if .signingkey }}
+	signingkey = {{ .signingkey }}
+{{- end }}
+[commit]
+{{- if .signingkey }}
+	gpgsign = true
+{{- else }}
+	gpgsign = false
+{{- end }}
+[core]
+	editor = vi
+	autocrlf = input
+[pull]
+	rebase = false
+	ff = only
+[merge]
+	ff = false
+[rebase]
+	autosquash = true
+[init]
+	defaultBranch = main
+[fetch]
+	prune = true
