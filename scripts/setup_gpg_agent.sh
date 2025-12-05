@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# GPG agent のセットアップ（macOS用）
-# pinentry-mac を使ってパスフレーズ入力をGUIで行えるようにする
-
 set -euo pipefail
 
 if [ "$(uname)" != 'Darwin' ]; then
@@ -10,13 +7,13 @@ if [ "$(uname)" != 'Darwin' ]; then
   exit 1
 fi
 
-if ! command -v pinentry-mac >/dev/null; then
-  echo "❌ pinentry-mac is not installed. Run: brew install pinentry-mac"
+if ! command -v brew >/dev/null; then
+  echo "Homebrew is not installed"
   exit 1
 fi
 
+brew install pinentry-mac
 mkdir -p ~/.gnupg
 echo "pinentry-program $(which pinentry-mac)" >> ~/.gnupg/gpg-agent.conf
 gpgconf --kill gpg-agent
-
-echo "✅ GPG agent configured with pinentry-mac"
+echo "GPG agent configured with pinentry-mac"

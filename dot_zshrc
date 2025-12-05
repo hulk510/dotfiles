@@ -38,12 +38,6 @@ alias dcd="docker compose down"
 alias dcl="docker compose logs -f"
 alias dprune="docker system prune -f"
 
-# Brew
-alias bb="brew bundle --file=~/.config/brewfile/Brewfile.core"
-alias bb-dev="brew bundle --file=~/.config/brewfile/Brewfile.dev"
-alias bb-macos="brew bundle --file=~/.config/brewfile/Brewfile.macos"
-alias bb-all="bb && bb-dev && bb-macos"
-
 # General
 alias ll="ls -la"
 alias la="ls -a"

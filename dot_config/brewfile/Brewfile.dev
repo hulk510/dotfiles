@@ -4,7 +4,6 @@
 brew "mise"
 brew "biome"
 brew "tree"
-brew "tmux"
 brew "gpg"
 
 # Kubernetes
