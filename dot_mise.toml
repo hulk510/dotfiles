@@ -10,3 +10,47 @@
 node = "lts"
 go = "latest"
 terraform = "latest"
+
+# ------------------------------
+# Tasks (dot: prefix for global dotfiles tasks)
+# ------------------------------
+
+[tasks."dot:brew"]
+description = "Install Homebrew core packages"
+run = "brew bundle --file=~/.config/brewfile/Brewfile.core"
+
+[tasks."dot:brew:dev"]
+description = "Install Homebrew dev packages"
+run = "brew bundle --file=~/.config/brewfile/Brewfile.dev"
+
+[tasks."dot:brew:macos"]
+description = "Install Homebrew macOS apps"
+run = "brew bundle --file=~/.config/brewfile/Brewfile.macos"
+
+[tasks."dot:brew:all"]
+description = "Install all Homebrew packages"
+depends = ["dot:brew", "dot:brew:dev", "dot:brew:macos"]
+
+[tasks."dot:setup:gpg"]
+description = "Setup GPG agent with pinentry-mac (macOS only)"
+run = "~/.local/share/chezmoi/scripts/setup_gpg_agent.sh"
+
+[tasks."dot:setup:macos"]
+description = "Apply macOS defaults settings"
+run = "~/.local/share/chezmoi/scripts/setup_mac_defaults.sh"
+
+[tasks."dot:setup:font"]
+description = "Install Fira Code font (Linux)"
+run = "~/.local/share/chezmoi/scripts/install_fira_code_font.sh"
+
+[tasks."dot:update"]
+description = "Update chezmoi dotfiles"
+run = "chezmoi update"
+
+[tasks."dot:diff"]
+description = "Show chezmoi diff"
+run = "chezmoi diff"
+
+[tasks."dot:apply"]
+description = "Apply chezmoi changes"
+run = "chezmoi apply"
