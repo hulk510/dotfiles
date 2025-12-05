@@ -1,12 +1,7 @@
 # 開発用パッケージ
-# 言語ランタイム、ツールチェーン
+# 言語ランタイムは mise で管理
 
 brew "mise"
-brew "go"
-brew "rust"
-brew "rustfmt"
-brew "deno"
-brew "oven-sh/bun/bun"
 brew "biome"
 brew "tree"
 brew "tmux"
@@ -18,6 +13,3 @@ brew "kubectx"
 brew "kubeseal"
 brew "helm"
 brew "kind"
-
-# IaC
-brew "tfenv"

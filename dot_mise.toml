@@ -1,0 +1,12 @@
+# グローバルの mise 設定
+# 必要に応じて追加: mise use -g <tool>@<version>
+#
+# 例:
+#   mise use -g rust@latest
+#   mise use -g python@3.12
+#   mise use -g deno@latest
+
+[tools]
+node = "lts"
+go = "latest"
+terraform = "latest"
